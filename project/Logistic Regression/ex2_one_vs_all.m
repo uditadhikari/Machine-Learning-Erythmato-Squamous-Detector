@@ -15,8 +15,8 @@ num_class = 6;              % represents the number of diseases we are trying to
 fprintf('Loading UCI Dermatology training data....');
 
 data = load('dermatology.txt');
-inputs = data(: , 1 : 34);
-output = data(:, 35);
+inputs = data(1:300 , 1 : 34);
+output = data(1:300 , 35);
 
 fprintf('\nTraining Multi Class Logistic Regression...\n');
 
