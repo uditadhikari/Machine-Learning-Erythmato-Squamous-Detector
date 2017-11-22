@@ -8,3 +8,5 @@ test_data = load('test_instance.txt');
 
 
 %save prediction.mat prediction;
+
+prediction = naive_bayes_classifier(X, y, test_data);
