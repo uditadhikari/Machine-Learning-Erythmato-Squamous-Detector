@@ -1,4 +1,4 @@
-function [expectation_Psoriasis, expectation_Seboreic, expectation_Lichen, expectation_ptyriasisRosea,expectation_cronisdermatitis,expectation_pityriasisRubraPilaris,variance_Psoriasis,variance_Seboreic,variance_Lichen,variance_ptyriasisRosea,variance_expectation_cronisdermatitis,variance_pityriasisRubraPilaris] = compute_expectation_var(X, y)
+function [expectation_Psoriasis, expectation_Seboreic, expectation_Lichen, expectation_ptyriasisRosea,expectation_cronisdermatitis,expectation_pityriasisRubraPilaris,variance_Psoriasis,variance_Seboreic,variance_Lichen,variance_ptyriasisRosea,variance_cronisdermatitis,variance_pityriasisRubraPilaris] = compute_expectation_var(X, y)
 %compute the estimation and variance of each feature respectively when the output is true and when false
 
 %initialize the vectors to return
@@ -49,17 +49,14 @@ pityriasisRubraPilaris = X(pityriasisRubraPilaris_index, :);
 
 %compute the estimation and variance for each of the six categories.
 expectation_Psoriasis = sum(psoriais)/ size(psoriais,1);
-variance_Psoriasis = var(expectation_Psoriasis);
+variance_Psoriasis = var(psoriais);
 expectation_Seboreic = sum(seboreic)/ size(seboreic,1);
-variance_Seboreic = var(expectation_Seboreic);
+variance_Seboreic = var(seboreic);
 expectation_Lichen = sum(lichen)/ size(lichen,1);
-variance_Lichen = var(expectation_Psoriasis);
+variance_Lichen = var(lichen);
 expectation_ptyriasisRosea = sum(ptyriasisRosea)/ size(ptyriasisRosea,1);
-variance_ptyriasisRosea = var(expectation_Psoriasis);
+variance_ptyriasisRosea = var(ptyriasisRosea);
 expectation_cronisdermatitis = sum(cronisdermatitis)/ size(cronisdermatitis,1);
-variance_expectation_cronisdermatitis = var(expectation_cronisdermatitis);
+variance_cronisdermatitis = var(cronisdermatitis);
 expectation_pityriasisRubraPilaris = sum(pityriasisRubraPilaris)/ size(pityriasisRubraPilaris,1);
-variance_pityriasisRubraPilaris = var(expectation_pityriasisRubraPilaris);
-
-
-
+variance_pityriasisRubraPilaris = var(pityriasisRubraPilaris);
