@@ -29,27 +29,27 @@ disp(prior_p_pityriasisRubraPilaris)
 
 
 
-[posterior_p_psoriasis,  posterior_p_seboreic,posterior_p_lichen,posterior_p_pityriasisRosea,posterior_p_cronicdermatitis,posterior_p_pityriasisRubraPilaris] = compute_posterior_p(data, expectation_Psoriasis,variance_Psoriasis, expectation_Seboreic,variance_Seboreic, expectation_Lichen, variance_Lichen,expectation_ptyriasisRosea,variance_ptyriasisRosea,expectation_cronisdermatitis,variance_cronisdermatitis,expectation_pityriasisRubraPilaris,variance_pityriasisRubraPilaris);
+[posterior_p_psoriasis, posterior_p_seboreic, posterior_p_lichen, posterior_p_pityriasisRosea, posterior_p_cronicdermatitis, posterior_p_pityriasisRubraPilaris] = compute_posterior_p(data, expectation_Psoriasis,variance_Psoriasis, expectation_Seboreic,variance_Seboreic, expectation_Lichen, variance_Lichen,expectation_ptyriasisRosea,variance_ptyriasisRosea,expectation_cronisdermatitis,variance_cronisdermatitis,expectation_pityriasisRubraPilaris,variance_pityriasisRubraPilaris);
 
 
 disp("######### psoriraris posterior probablitiy ##########") ,
-disp(prior_p_psoriasis)
+disp(posterior_p_psoriasis)
 
 
 disp("######### seboreic posterior probablitiy ##########") ,
-disp(prior_p_seboreic)
+disp(posterior_p_seboreic)
 
 disp("######### lichen posterior probablitiy ##########") ,
-disp(prior_p_lichen)
+disp(posterior_p_lichen)
 
 disp("######### pityriasisRosea posterior probablitiy ##########") ,
-disp(prior_p_pityriasisRosea)
+disp(posterior_p_pityriasisRosea)
 
 disp("######### cronicdermatitis posterior probablitiy ##########") ,
-disp(prior_p_cronicdermatitis)
+disp(posterior_p_cronicdermatitis)
 
 disp("######### pityriasisRubraPilaris posterior probablitiy ##########") ,
-disp(prior_p_pityriasisRubraPilaris)
+disp(posterior_p_pityriasisRubraPilaris)
 
 
 
