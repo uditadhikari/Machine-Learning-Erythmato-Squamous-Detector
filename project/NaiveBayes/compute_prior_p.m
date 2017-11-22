@@ -9,29 +9,30 @@ lichenCount =0;
 pityriasisRoseaCount=0;
 cronicdermatitisCount=0;
 pityriasisRubraPilarisCount=0;
-for i = 1:size(y),
-	if y(i) == 1,
-		psoriasisCount++;
-	end;
-  if y(i) == 2,
-		seboreicCount++;
-	end;
-  if y(i) == 3,
-		lichenCount++;
-	end;
-  if y(i) == 4,
-		pityriasisRoseaCount++;
-	end; 
-  if y(i) == 5,
-		cronicdermatitisCount++;
-	end;
-  if y(i) == 6,
-		pityriasisRubraPilarisCount++;
-	end;
-end;
-prior_p_psoriasis = psoriasisCount / size(y, 1);
-prior_p_seboreic = seboreicCount / size(y, 2);
-prior_p_lichen = lichenCount / size(y, 3);
-prior_p_pityriasisRosea = pityriasisRoseaCount / size(y, 4);
-prior_p_cronicdermatitis = cronicdermatitisCount / size(y, 5);
-prior_p_pityriasisRubraPilaris = pityriasisRubraPilarisCount / size(y, 6);
+
+psoriasis_index = find(y == 1);
+psoriasisCount = size(psoriasis_index, 1);
+
+seboreic_index = find(y == 2);
+seboreicCount = size(seboreic_index, 1);
+
+lichen_index = find(y == 3);
+lichenCount = size(lichen_index, 1);
+
+ptyriasisRosea_index = find(y == 4);
+pityriasisRoseaCount = size(ptyriasisRosea_index, 1);
+
+cronisdermatitis_index = find(y == 5);
+cronicdermatitisCount = size(cronisdermatitis_index, 1);
+
+pityriasisRubraPilaris_index = find(y == 6);
+pityriasisRubraPilarisCount = size(pityriasisRubraPilaris_index, 1);
+
+total_count = size(y, 1)
+
+prior_p_psoriasis = psoriasisCount / total_count;
+prior_p_seboreic = seboreicCount / total_count;
+prior_p_lichen = lichenCount / total_count;
+prior_p_pityriasisRosea = pityriasisRoseaCount / total_count;
+prior_p_cronicdermatitis = cronicdermatitisCount / total_count;
+prior_p_pityriasisRubraPilaris = pityriasisRubraPilarisCount / total_count;
