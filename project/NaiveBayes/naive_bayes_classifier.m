@@ -1,15 +1,20 @@
 function prediction = naive_bayes_classifier(X, y, data)
 
-prediction = zeros(size(data, 1), 1);
+%prediction = zeros(size(data, 1), 1);
 
-[expectTrue, expectFalse, varTrue, varFalse] = compute_expect_var(X, y);
+[expectTrue, expectFalse, varTrue, varFalse] = compute_expectation_var(X, y);
 
-prior_p_true = compute_prior_p(y);
-prior_p_false = 1 - prior_p_true;
+[prior_p_psoriasis,prior_p_seboreic,prior_p_lichen,prior_p_pityriasisRosea,prior_p_cronicdermatitis,prior_p_pityriasisRubraPilaris]= compute_prior_p(y);
 
-[posterior_p_true,  posterior_p_false] = compute_posterior_p(data, expectTrue, varTrue, expectFalse, varFalse);
+
+disp("psoriraris prior probablitiy") ,
+disp(prior_p_psoriasis)
+
+
+%[posterior_p_true,  posterior_p_false] = compute_posterior_p(data, expectTrue, varTrue, expectFalse, varFalse);
 
 %compute the posterior prabability of being true for each instance of data
+#{
 p1 = ones(size(data, 1), 1);
 for i = 1:size(data, 1),
 	for j = 1:size(data,2),
@@ -17,8 +22,10 @@ for i = 1:size(data, 1),
 	end;
 	p1(i) = prior_p_true * p1(i);
 end;
+}#
 
 %compute the posterior prabability of being fasle for each instance of data
+#{
 p2 = ones(size(data, 1), 1);
 for i = 1:size(data, 1),
 	for j = 1:size(data,2),
@@ -26,8 +33,10 @@ for i = 1:size(data, 1),
 	end;
 	p2(i) = prior_p_false * p2(i);
 end;
+}#
 
 %get the output
+#{
 for i = 1:size(data, 1),
 	if p1(i) >= p2(i),
 		prediction(i) = 1;
@@ -35,3 +44,4 @@ for i = 1:size(data, 1),
 		prediction(i) = -1;
 	end;
 end;
+}#
