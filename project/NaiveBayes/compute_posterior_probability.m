@@ -7,7 +7,6 @@ sampleNum = size(X, 1);
 
 expectationTrue = zeros(featureNum, 1);
 
-disp(expectationTrue);
 
 %{
 varianceTrue = zeros(featureNum, 1);

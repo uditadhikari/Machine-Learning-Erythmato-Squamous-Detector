@@ -30,10 +30,15 @@ pityriasisRubraPilaris = zeros(1, featureNum);
 
 
 psoriasis_index = find(y == 1);
-psoriais = X(Psoriasis_index, :);
+psoriais = X(psoriasis_index, :);
+
+
 
 seboreic_index = find(y == 2);
 seboreic = X(seboreic_index, :);
+
+
+
 
 lichen_index = find(y == 3);
 lichen = X(lichen_index, :);
@@ -47,16 +52,34 @@ cronisdermatitis = X(cronisdermatitis_index, :);
 pityriasisRubraPilaris_index = find(y == 6);
 pityriasisRubraPilaris = X(pityriasisRubraPilaris_index, :);
 
+
 %compute the estimation and variance for each of the six categories.
 expectation_Psoriasis = sum(psoriais)/ size(psoriais,1);
 variance_Psoriasis = var(psoriais);
+
+%expectation_Psoriasis
+%variance_Psoriasis
+
 expectation_Seboreic = sum(seboreic)/ size(seboreic,1);
 variance_Seboreic = var(seboreic);
+
+
+
 expectation_Lichen = sum(lichen)/ size(lichen,1);
 variance_Lichen = var(lichen);
+
+
+
 expectation_ptyriasisRosea = sum(ptyriasisRosea)/ size(ptyriasisRosea,1);
 variance_ptyriasisRosea = var(ptyriasisRosea);
+
+
+
 expectation_cronisdermatitis = sum(cronisdermatitis)/ size(cronisdermatitis,1);
 variance_cronisdermatitis = var(cronisdermatitis);
+
+
+
 expectation_pityriasisRubraPilaris = sum(pityriasisRubraPilaris)/ size(pityriasisRubraPilaris,1);
 variance_pityriasisRubraPilaris = var(pityriasisRubraPilaris);
+

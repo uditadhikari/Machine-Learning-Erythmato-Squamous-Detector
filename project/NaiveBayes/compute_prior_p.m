@@ -28,7 +28,7 @@ cronicdermatitisCount = size(cronisdermatitis_index, 1);
 pityriasisRubraPilaris_index = find(y == 6);
 pityriasisRubraPilarisCount = size(pityriasisRubraPilaris_index, 1);
 
-total_count = size(y, 1)
+total_count = size(y, 1);
 
 prior_p_psoriasis = psoriasisCount / total_count;
 prior_p_seboreic = seboreicCount / total_count;
