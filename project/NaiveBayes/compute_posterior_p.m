@@ -29,6 +29,3 @@ for i = 1:size(test_data,1),
 	posterior_p_pityriasisRubraPilaris(i, :) = 1 ./ ((2 * pi) .* variance_pityriasisRubraPilaris).^ 0.5 .* exp(- ((test_data(i, :) - expectation_pityriasisRubraPilaris) .^ 2) ./ (2 .* variance_pityriasisRubraPilaris));
 end;
 
-
-
-

@@ -3,13 +3,12 @@ data = load('dermatology.txt');
 X = data(1:280 , 1 : 34);
 y = data(1:280 , 35);
 
-test_data_with_output = load('test_instance.txt');
 test_data_without_output = data(281:358,1:34);
 test_data_output_only = data(281:358,35);
 
 %save prediction.mat prediction;
 
-prediction = naive_bayes_classifier(X, y, test_data_without_output);
+prediction = naive_bayes_classifier(X, y, train_data_without_output);
 
 %disp("########## Predicted classes for test data are  is #########")
 %disp(prediction)
