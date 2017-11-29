@@ -23,7 +23,6 @@ fprintf('\nTraining Multi Class Logistic Regression...\n');
 lmb = 0.1;
 [all_theta] = oneVsAll(train_inputs, train_output, num_class, lmb);
 
-all_theta;
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
