@@ -1,11 +1,11 @@
-train_data = load('train_instance.txt');
+data = load('dermatology.txt');
 
-X = train_data(1:200 , 1 : 34);
-y = train_data(1:200 , 35);
+X = data(1:280 , 1 : 34);
+y = data(1:280 , 35);
 
 test_data_with_output = load('test_instance.txt');
-test_data_without_output = test_data(1:199,1:34);
-test_data_output_only = test_data(1:199,35);
+test_data_without_output = data(281:358,1:34);
+test_data_output_only = data(281:358,35);
 
 %save prediction.mat prediction;
 
