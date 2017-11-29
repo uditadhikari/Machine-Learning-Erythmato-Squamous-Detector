@@ -27,4 +27,4 @@ end;
 
 disp("The number of correct predirctions is "),disp(match);
 disp("The number of incorrect predirctions is"),disp(nonmatch);
-disp("Accuracy percentage is "),disp((match/199)*100);
+disp("Accuracy percentage is "),disp((match/(358-281))*100);

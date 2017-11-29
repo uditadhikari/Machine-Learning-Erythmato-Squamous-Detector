@@ -15,19 +15,22 @@ num_class = 6;              % represents the number of diseases we are trying to
 fprintf('Loading UCI Dermatology training data....');
 
 data = load('dermatology.txt');
-inputs = data(1:300 , 1 : 34);
-output = data(1:300 , 35);
+train_inputs = data(1:280 , 1 : 34);
+train_output = data(1:280 , 35);
 
 fprintf('\nTraining Multi Class Logistic Regression...\n');
 
 lmb = 0.1;
-[all_theta] = oneVsAll(inputs, output, num_class, lmb);
+[all_theta] = oneVsAll(train_inputs, train_output, num_class, lmb);
 
 all_theta;
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-pred = predictOneVsAll(all_theta, inputs);
 
-fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == output)) * 100);
+test_inputs = data(281:358 , 1 : 34);
+test_output = data(281:358 , 35);
+pred = predictOneVsAll(all_theta, test_inputs);
+
+fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == test_output)) * 100);
