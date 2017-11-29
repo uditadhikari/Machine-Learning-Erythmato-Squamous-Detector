@@ -3,13 +3,13 @@ train_data = load('train_instance.txt');
 X = train_data(1:200 , 1 : 34);
 y = train_data(1:200 , 35);
 
-test_data_with_output = load('test_instance.txt');
-test_data_without_output = test_data(1:199,1:34);
-test_data_output_only = test_data(1:199,35);
+train_data_with_output = load('test_instance.txt');
+train_data_without_output = test_data(1:199,1:34);
+train_data_output_only = test_data(1:199,35);
 
 %save prediction.mat prediction;
 
-prediction = naive_bayes_classifier(X, y, test_data_without_output);
+prediction = naive_bayes_classifier(X, y, train_data_without_output);
 
 %disp("########## Predicted classes for test data are  is #########")
 %disp(prediction)
