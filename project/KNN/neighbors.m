@@ -3,14 +3,20 @@
 
 % A sample implementation looks like this 
 
-def getNeighbors(trainingSet, testInstance, k):
-	distances = []
-	length = len(testInstance)-1
-	for x in range(len(trainingSet)):
-		dist = euclideanDistance(testInstance, trainingSet[x], length)
-		distances.append((trainingSet[x], dist))
-	distances.sort(key=operator.itemgetter(1))
-	neighbors = []
-	for x in range(k):
-		neighbors.append(distances[x][0])
-	return neighbors
+function [neighbors, neighbors_index] = getNeighbors(X, testInstance, k)
+	
+  dataLen = size(X,1);
+  
+  dists = zeros(dataLen,1);
+  
+  for index = 1 : dataLen
+      distances(index) = sqrt(sum((X(index, :) - testInstance).^2));
+  end
+    
+  [dist, ind] = sort(dists);
+  
+  neighbors_index = ind(1:k);
+  
+  neighbors = X(neighbors_index,:);
+
+  
