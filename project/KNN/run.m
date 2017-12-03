@@ -26,5 +26,9 @@
 		predictions.append(result)
 		print('> predicted=' + repr(result) + ', actual=' + repr(test_data_output_only[x]))
 	accuracy = getAccuracy(testSet, predictions)
+<<<<<<< Updated upstream
 	print('Accuracy: ' + repr(accuracy) + '%') 
+=======
+	print('Accuracy: ' + repr(accuracy) + '%')
+>>>>>>> Stashed changes
   
