@@ -1,30 +1,50 @@
+
+%% Initialization
+clear ; close all; clc
+
 # prepare data
 
   data = load('dermatology.txt');
   X = data(1:280 , 1 : 34);
   y = data(1:280 , 35);
   
-  
-  
   test_data_without_output = data(281:358,1:34);
   test_data_output_only = data(281:358,35);
-  
- 
-	
+  	
 	# generate predictions
 	predictions=[]
-	k = 15 # collecting K most similar points. We pick sqrt(n).
+	k = 0 # collecting K most similar points. We pick sqrt(n).
   
+  num_correct_predictions = 0;
+  min_k = 2;
+  num_k = 100;
+  accuracy_list = zeros(num_k - min_k, 1);
   
-  for index = 1 : size(test_data_without_output, 1)
-		[neighbors_rows, neighbors_index] = neighbors(X, test_data_without_output(index, :), k);
-    result = vote(y(neighbors_index, :));
-    #result
-  end;
-  
-  #predictions.append(result)
-	#print('> predicted=' + repr(result) + ', actual=' + repr(test_data_output_only[x]))
-	#accuracy = getAccuracy(testSet, predictions)
-	#print('Accuracy: ' + repr(accuracy) + '%')
+  for k = min_k : num_k
+    
+    accuracy = 0;
+    num_correct_predictions = 0;
+    total_predictions = size(test_data_without_output, 1);
+    
+    for index = 1 : size(test_data_without_output, 1)
+      [neighbors_rows, neighbors_index] = neighbors(X, test_data_without_output(index, :), k);
+      result = vote(y(neighbors_index, :));    
+      predictVal = predict(result, test_data_output_only(index, 1));
+      num_correct_predictions += predictVal;
+    end;
+    
+    accuracy = (round((num_correct_predictions/total_predictions) * 10000) / 10000) * 100;
+    
+    accuracy_list(k) = accuracy;
 
-
+    fprintf('For K = %i train Accuracy is : %f\n', k, accuracy);
+  
+  end  
+  
+  [max_accuracy, k_index] = max(accuracy_list);
+  
+  fprintf('Maximum accuracy %f for K = %i\n', max_accuracy, k_index);
+  
+  plotAccuracyOverK(accuracy_list);
+  
+  
