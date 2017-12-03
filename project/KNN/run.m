@@ -19,16 +19,10 @@
   for index = 1 : size(test_data_without_output, 1)
 		[neighbors, neighbors_index] = getNeighbors(X, test_data_without_output(index, :), k)
 		result = voteOnNeighbors(y(neighbors_index, :));
-    
-    
-    
-    
-		predictions.append(result)
+  end
+  
+    predictions.append(result)
 		print('> predicted=' + repr(result) + ', actual=' + repr(test_data_output_only[x]))
-	accuracy = getAccuracy(testSet, predictions)
-<<<<<<< Updated upstream
-	print('Accuracy: ' + repr(accuracy) + '%') 
-=======
-	print('Accuracy: ' + repr(accuracy) + '%')
->>>>>>> Stashed changes
+	  accuracy = getAccuracy(testSet, predictions)
+	  print('Accuracy: ' + repr(accuracy) + '%')
   
