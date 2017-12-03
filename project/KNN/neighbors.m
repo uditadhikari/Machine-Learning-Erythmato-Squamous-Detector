@@ -3,7 +3,7 @@
 
 % A sample implementation looks like this 
 
-function [neighbors, neighbors_index] = getNeighbors(X, testInstance, k)
+function [neighbors_rows, neighbors_index] = neighbors(X, testInstance, k)
 	
   dataLen = size(X,1);
   
@@ -17,6 +17,6 @@ function [neighbors, neighbors_index] = getNeighbors(X, testInstance, k)
   
   neighbors_index = ind(1:k);
   
-  neighbors = X(neighbors_index,:);
+  neighbors_rows = X(neighbors_index,:);
 
   
