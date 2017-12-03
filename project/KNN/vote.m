@@ -1,4 +1,4 @@
-function result = voteOnNeighbors(y)
+function result = vote(y)
 
   psoriasisCount = 0;
   seboreicCount =0 ;
