@@ -29,3 +29,4 @@
 		#print('> predicted=' + repr(result) + ', actual=' + repr(test_data_output_only[x]))
 	#accuracy = getAccuracy(testSet, predictions)
 	#print('Accuracy: ' + repr(accuracy) + '%')
+
