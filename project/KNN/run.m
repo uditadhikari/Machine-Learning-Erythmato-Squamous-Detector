@@ -17,7 +17,14 @@
   
   
   for index = 1 : size(test_data_without_output, 1)
-		[neighbors_rows, neighbors_index] = neighbors(X, test_data_without_output(index, :), k)
-    #result = vote(y(neighbors_index, :));
+		[neighbors_rows, neighbors_index] = neighbors(X, test_data_without_output(index, :), k);
+    result = vote(y(neighbors_index, :));
     #result
   end;
+  
+  #predictions.append(result)
+	#print('> predicted=' + repr(result) + ', actual=' + repr(test_data_output_only[x]))
+	#accuracy = getAccuracy(testSet, predictions)
+	#print('Accuracy: ' + repr(accuracy) + '%')
+
+

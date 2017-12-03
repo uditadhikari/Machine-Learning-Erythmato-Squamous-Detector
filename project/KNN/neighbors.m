@@ -10,7 +10,7 @@ function [neighbors_rows, neighbors_index] = neighbors(X, testInstance, k)
   dists = zeros(dataLen,1);
   
   for index = 1 : dataLen
-      distances(index) = sqrt(sum((X(index, :) - testInstance).^2));
+      dists(index) = sqrt(sum((X(index, :) - testInstance).^2));
   end
     
   [dist, ind] = sort(dists);
