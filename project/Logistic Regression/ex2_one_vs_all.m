@@ -22,13 +22,16 @@ fprintf('\nTraining Multi Class Logistic Regression...\n');
 
 lmb = 0.1;
 [all_theta] = oneVsAll(train_inputs, train_output, num_class, lmb);
-
+all_theta
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
 test_inputs = data(281:358 , 1 : 34);
 test_output = data(281:358 , 35);
-pred = predictOneVsAll(all_theta, test_inputs);
 
-fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == test_output)) * 100);
+pred_train = predictOneVsAll(all_theta, train_inputs);
+pred_test = predictOneVsAll(all_theta, test_inputs);
+
+fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred_train == train_output)) * 100);
+fprintf('\nTest Set Accuracy: %f\n', mean(double(pred_test == test_output)) * 100);
