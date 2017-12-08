@@ -5,14 +5,26 @@ clear ; close all; clc
 # prepare data
 
   data = load('dermatology.txt');
-  X = data(1:280 , 1 : 34);
+  
+  
+  normalized_data = data(: , 1 : 34);
+
+  #normalize the data;
+
+  min_data    = min(normalized_data); 
+  max_data    = max(normalized_data);
+  range_data  = max_data - min_data;
+
+  normalized_data = (normalized_data .- min_data) ./ range_data;
+
+  X = normalized_data(1:280 , :);
   y = data(1:280 , 35);
   
-  test_data_without_output = data(281:358,1:34);
-  test_data_output_only = data(281:358,35);
+  test_data_without_output = normalized_data(281:358, :);
+  test_data_output_only = data(281:358 , 35);
   	
 	# generate predictions
-	predictions=[]
+	predictions=[];
 	k = 0 # collecting K most similar points. We pick sqrt(n).
   
   num_correct_predictions = 0;
