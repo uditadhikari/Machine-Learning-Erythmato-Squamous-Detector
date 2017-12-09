@@ -6,7 +6,7 @@ data = load('dermatology.txt');
  
 normalized_data = data(: , 1 : 34);
 
-
+#normalize the data;
 min_data    = min(normalized_data); 
 max_data    = max(normalized_data);
 range_data  = max_data - min_data;
