@@ -12,7 +12,7 @@ function plotAccuracyOverLambda(figureName, accuracy_list, min_Lambda)
   
   %Plot Examples
   
-  accuracy_list_len = size(accuracy_list, 1)
+  accuracy_list_len = size(accuracy_list, 1);
   index = 1;
   
   while index <=  accuracy_list_len

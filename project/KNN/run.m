@@ -17,10 +17,10 @@ clear ; close all; clc
  
  
   # Rescaling
-   #normalized_data = (normalized_data .- min_data) ./ range_data;
+  # normalized_data = (normalized_data .- min_data) ./ range_data;
  
   # Mean Normalization
-   #normalized_data = (normalized_data .- mean_data) ./ range_data;
+  # normalized_data = (normalized_data .- mean_data) ./ range_data;
 
   # Standardization
     normalized_data = (normalized_data .- mean_data) ./ sd_data;

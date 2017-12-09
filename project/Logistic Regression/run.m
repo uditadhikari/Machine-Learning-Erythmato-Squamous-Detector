@@ -17,7 +17,7 @@
   data = load('dermatology.txt');
 
   #normalize the data;
-  normalized_data = data(: , 1 : 34);
+  normalized_data = data(1:280 , 1 : 34);
   
   min_data    = min(normalized_data); 
   max_data    = max(normalized_data);
@@ -27,24 +27,27 @@
  
  
   # Rescaling
-  normalized_data = (normalized_data .- min_data) ./ range_data;
+  # normalized_train_data = (normalized_data .- min_data) ./ range_data;
+  # normalized_test_data = (data(281:358, 1: 34) .-  min_data) ./ range_data;
  
   # Mean Normalization
-  # normalized_data = (normalized_data .- mean_data) ./ range_data;
+  # normalized_train_data = (normalized_data .- mean_data) ./ range_data;
+  # normalized_test_data = (data(281:358, 1: 34) .-  mean_data) ./ range_data;
 
   # Standardization
-  # normalized_data = (normalized_data .- mean_data) ./ sd_data;
+  normalized_train_data = (normalized_data .- mean_data) ./ sd_data;
+  normalized_test_data = (data(281:358, 1: 34) .-  mean_data) ./ sd_data;
 
-  train_inputs = normalized_data(1:280 , :);
-  train_output = data(1:280 , 35);
+  train_inputs = normalized_train_data(: , :);
+  train_output = data(1 : 280 , 35);
   
-  test_inputs = normalized_data(281:358 , :);
+  test_inputs = normalized_test_data(: , :);
   test_output = data(281:358 , 35);
 
   fprintf('\nTraining Multi Class Logistic Regression...\n');
 
   num_correct_predictions = 0;
-  min_Lambda = 0.001;
+  min_Lambda = 0.1;
   max_Lambda = 100;
   multiplier = 10;
   num_Lambda = log10(max_Lambda) - log10(min_Lambda);
@@ -84,15 +87,17 @@
     
   end  
     
+  fprintf("\n");
+  
   [max_train_accuracy, train_lmb_index] = max(training_accuracy_list);    
   lambda_val = min_Lambda * (10 ^ (train_lmb_index - 1));
-  fprintf('Maximum training accuracy %f for lambda = %i\n', max_train_accuracy, lambda_val);
+  fprintf('Maximum training accuracy is %f when lambda = %i\n', max_train_accuracy, lambda_val);
   figureName = "Training Accuracy";
   plotAccuracyOverLambda(figureName, training_accuracy_list, min_Lambda);  
    
     
   [max_test_accuracy, test_lmb_index] = max(testing_accuracy_list);    
   lambda_val = min_Lambda * (10 ^ (test_lmb_index - 1));
-  fprintf('Maximum testing accuracy %f for lambda = %i\n', max_test_accuracy, lambda_val);    
+  fprintf('Maximum testing accuracy is %f when lambda = %i\n', max_test_accuracy, lambda_val);    
   figureName = "Testing Accuracy";
   plotAccuracyOverLambda(figureName, testing_accuracy_list, min_Lambda);  
