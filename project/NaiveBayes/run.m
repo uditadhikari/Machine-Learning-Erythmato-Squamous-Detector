@@ -11,8 +11,17 @@ min_data    = min(normalized_data);
 max_data    = max(normalized_data);
 range_data  = max_data - min_data;
 mean_data   = mean(normalized_data);
+sd_data     = std(normalized_data);
  
-normalized_data = (normalized_data .- mean_data) ./ range_data;
+ 
+# Rescaling
+# normalized_data = (normalized_data .- min_data) ./ range_data;
+ 
+# Mean Normalization
+# normalized_data = (normalized_data .- mean_data) ./ range_data;
+
+# Standardization
+normalized_data = (normalized_data .- mean_data) ./ sd_data;
 
 X = normalized_data(1:280 , : );
 y = data(1:280 , 35);
