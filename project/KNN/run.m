@@ -7,7 +7,7 @@ clear ; close all; clc
   data = load('dermatology.txt');
     
   #normalize the data;
-  normalized_data = data(: , 1 : 34);
+  normalized_data = data(1 : 280, 1 : 34);
   
   min_data    = min(normalized_data); 
   max_data    = max(normalized_data);
@@ -17,18 +17,21 @@ clear ; close all; clc
  
  
   # Rescaling
-  # normalized_data = (normalized_data .- min_data) ./ range_data;
+  # normalized_train_data = (normalized_data .- min_data) ./ range_data;
+  # normalized_test_data = (data(281:358, 1 : 34) .- min_data) ./ range_data;
  
   # Mean Normalization
-  # normalized_data = (normalized_data .- mean_data) ./ range_data;
+  # normalized_train_data = (normalized_data .- mean_data) ./ range_data;
+  # normalized_test_data = (data(281:358, 1 : 34) .- mean_data) ./ range_data;
 
   # Standardization
-    normalized_data = (normalized_data .- mean_data) ./ sd_data;
+  normalized_train_data = (normalized_data .- mean_data) ./ sd_data;
+  normalized_test_data = (data(281:358, 1 : 34) .- mean_data) ./ sd_data;
 
-  X = normalized_data(1:280 , :);
+  X = normalized_train_data(: , :);
   y = data(1:280 , 35);
   
-  test_data_without_output = normalized_data(281:358, :);
+  test_data_without_output = normalized_test_data(: , :);
   test_data_output_only = data(281:358 , 35);
   	
 	# generate predictions
@@ -37,7 +40,7 @@ clear ; close all; clc
   
   num_correct_predictions = 0;
   min_k = 1;
-  num_k = 50;
+  num_k = 100;
   accuracy_list = zeros(num_k - min_k, 1);
   
   for k = min_k : num_k

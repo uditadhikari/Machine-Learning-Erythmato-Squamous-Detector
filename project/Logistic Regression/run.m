@@ -27,16 +27,16 @@
  
  
   # Rescaling
-  # normalized_train_data = (normalized_data .- min_data) ./ range_data;
-  # normalized_test_data = (data(281:358, 1: 34) .-  min_data) ./ range_data;
+  normalized_train_data = (normalized_data .- min_data) ./ range_data;
+  normalized_test_data = (data(281:358, 1: 34) .-  min_data) ./ range_data;
  
   # Mean Normalization
   # normalized_train_data = (normalized_data .- mean_data) ./ range_data;
   # normalized_test_data = (data(281:358, 1: 34) .-  mean_data) ./ range_data;
 
   # Standardization
-  normalized_train_data = (normalized_data .- mean_data) ./ sd_data;
-  normalized_test_data = (data(281:358, 1: 34) .-  mean_data) ./ sd_data;
+  # normalized_train_data = (normalized_data .- mean_data) ./ sd_data;
+  # normalized_test_data = (data(281:358, 1: 34) .-  mean_data) ./ sd_data;
 
   train_inputs = normalized_train_data(: , :);
   train_output = data(1 : 280 , 35);
