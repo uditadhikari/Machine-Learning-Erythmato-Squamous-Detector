@@ -138,12 +138,12 @@ end;
 
 %predict the output by picking the highest probabality 
 
-p1
-p2
-p3
-p4
-p5
-p6
+#p1
+#p2
+#p3
+#p4
+#p5
+#p6
 
 for i = 1:size(data, 1),
   [x, ix] = max ([p1(i),p2(i),p3(i),p4(i),p5(i),p6(i)]);
