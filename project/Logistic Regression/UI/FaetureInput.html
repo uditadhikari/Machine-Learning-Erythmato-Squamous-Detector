@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Clinical and Hispathological Features</title>
+
+<style> 
+td.label {
+    width :60%
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+
+function indexOfMax(arr) {
+    if (arr.length === 0) {
+        return -1;
+    }
+
+    var max = arr[0];
+    var maxIndex = 0;
+
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            maxIndex = i;
+            max = arr[i];
+        }
+    }
+
+    return maxIndex;
+}
+
+var featureSetValueArray = [];
+
+var hypothesisFuncValue = [];//this is array holding the six different h(x) values.
+
+var featureSetElementArray = ['erythema','scaling','definiteborders','itching','koebnerohenomenon','polygonalpapules',
+	'follicularpapules','oralmucosalinvolvement','kneeandelbowinvolvement','scalpinvolvement','familyhistory','melaninincontinence',
+	'eosinophilsintheinfiltrate','PNLinfiltrate','fibrosisofthepapillarydermis','exocytosis','acanthosis',
+	'hyperkeratosis','parakeratosis','clubbingofthereteridges','elongationofthereteridges','thinningofthesuprapapillaryepidermis',
+	'spongiformpustule','munromicroabcess','focalhypergranulosis','disappearanceofthegranularlayer','vacuolisationanddamageofbasallayer',
+	'spongiosis','saw-toothappearanceofretes','follicularhornplug','perifollicularparakeratosis','inflammatorymonoluclearinflitrate','band-likeinfiltrate','Age'
+	] 
+var classlabelArray=['psoriasis','seboreic dermatitis','lichen planus','pityriasis rosea','cronic dermatitis','pityriasis rubra pilaris']
+var collectInput = function (){
+
+	for (i = 0; i < featureSetElementArray.length-1; i++) { 
+		
+		
+		var radios = document.getElementsByName(featureSetElementArray[i]);
+
+		for (var j = 0, length = radios.length; j < length; j++)
+		{
+		 if (radios[j].checked)
+		 {
+			 featureSetValueArray.push(radios[j].value)
+		 }else{
+			 featureSetValueArray.push(0) 
+		 }
+		}
+	}
+	
+	featureSetValueArray.push(document.getElementById('Age').value)
+}
+
+
+var predictClass = function () {
+	
+		collectInput();
+		hypothesisFuncValue=[]
+		hypvalue = 0.0;
+		for ( var j=1;j<35;j++){
+			hypvalue=hypvalue+ featureSetValueArray[j]*thetaValuepsoriasis[j]
+		}
+		hypvalue=hypvalue+thetaValuepsoriasis[0];
+		hypothesisFuncValue.push(hypvalue)	
+		
+		hypvalue = 0.0;
+		for ( var j=1;j<35;j++){
+			hypvalue=hypvalue+ featureSetValueArray[j]*thetaValueseboreicdermatitis[j]
+		}
+		hypvalue=hypvalue+thetaValueseboreicdermatitis[0];
+		hypothesisFuncValue.push(hypvalue)	
+		
+		
+		hypvalue = 0.0;
+		for ( var j=1;j<35;j++){
+			hypvalue=hypvalue+ featureSetValueArray[j]*thetavaluelichenplanus[j]
+		}
+		hypvalue=hypvalue+thetavaluelichenplanus[0];
+		hypothesisFuncValue.push(hypvalue)
+		
+		hypvalue = 0.0;
+		for ( var j=1;j<35;j++){
+			hypvalue=hypvalue+ featureSetValueArray[j]*thetaValuepityriasisrosea[j]
+		}
+		hypvalue=hypvalue+thetaValuepityriasisrosea[0];
+		hypothesisFuncValue.push(hypvalue)
+		
+		hypvalue = 0.0;
+		for ( var j=1;j<35;j++){
+			hypvalue=hypvalue+ featureSetValueArray[j]*thetaValuecronicdermatitis[j]
+		}
+		hypvalue=hypvalue+thetaValuecronicdermatitis[0];
+		hypothesisFuncValue.push(hypvalue)
+		
+		hypvalue = 0.0;
+		for ( var j=1;j<35;j++){
+			hypvalue=hypvalue+ featureSetValueArray[j]*thetaValuepPityriasisrubrapilaris[j]
+		}
+		hypvalue=hypvalue+thetaValuepPityriasisrubrapilaris[0];
+		hypothesisFuncValue.push(hypvalue)
+		
+		
+		
+		var index = indexOfMax(hypothesisFuncValue)//hypothesisFuncValue.indexOf(Math.max(hypothesisFuncValue));
+		
+		alert('The predicted class label is ' +  classlabelArray[index])
+
+}
+
+var thetaValuepsoriasis= [-1.3431369,-0.2115733,0.0638554,0.4579130,-0.6510299,0.2906965,-0.3874681,-0.6813626,-0.3320865,0.9196588,1.1078082,0.4354267,-0.3578726,-0.198385,
+						  0.8883927,-1.0988839,-1.6293665,-0.6686797,0.2587363,0.2908025,1.9796328,1.2975961,1.9903486,0.8980355,0.9956590,-0.3661388,0.7598972,-0.3936226,
+						  -1.8477182,-0.4299927,-0.3791392,-0.4761892,-0.4443322,-0.4986028,-0.2081022] ;
+
+
+var thetaValueseboreicdermatitis=[-1.1712232,0.4002195,0.5087313,-0.8469413,0.9025254,-2.4031221,-0.8076991,-0.8434035,-0.6956753,-0.9191372,-0.5179783,-0.4871702,-0.7204613,1.5112421,
+								   1.9335087,-1.2235254,0.9347311,-0.2068946,-1.0773837,-0.5038019,-0.9329671,-1.3268251,-0.8372038,0.0138548,-0.5040767,-0.7470654,-0.9846317,-0.8309805,
+								   1.9301001,-0.8567336,-0.3990013,-0.5561291,-1.0770807,-0.9016376,-0.4123824];
+var thetavaluelichenplanus=[-1.5358406,-0.8085692,-0.9852928,-0.0018795,0.1539784,0.2593960,1.6383517,-0.3052121,1.3437837,-0.5331737,-0.4044342,-0.3760922,1.4004514,-0.0902378,
+	  -0.7676131,-0.4068740,-0.1111195,-0.5851990,-0.3351182,-0.3782458,-0.4933630,-0.9666900,-0.4776129,-0.3059203,-0.1410975,1.3703985,-0.0349937,1.5745307,
+	  -0.4678071,1.6183649,-0.1384108,-0.1823253,-0.3767870,1.8763060,-0.5362690
+	];
+
+var thetaValuepityriasisrosea=[0.0059346,-0.5086557,-0.6171252,-0.1299267,-2.2146957,2.5084315,-0.7028869,-0.6798295,-0.6693689,-0.9442935,-0.6915560,-0.7386903,-0.6538230,-0.7312189,
+	  -1.4617724,-0.8591960,1.0782762,-0.9727362,0.0641223,-0.3055210,-0.6734223,-1.4836423,-0.6706285,-0.5541545,-0.3135449,-0.6672744,0.4548986,-0.7621130,
+	   1.2395063,-0.6930395,-0.3434042,-0.4368947,-0.0334306,-1.0111258,0.2030464
+];
+
+var thetaValuecronicdermatitis=[-0.0693795,-1.0319947,-0.9073547,-0.6596728,0.7571522,-1.0404112,-0.5109342,0.1580411,-0.4473856,-1.0361452,-0.8694300,-0.6740896,-0.4650391,-0.3416447,
+	  -1.2505527,3.4817214,-1.3588810,0.6033603,0.3618938,-0.6652813,-1.0026138,1.5825687,-0.9379532,-0.5805949,-0.5717337,-0.4803131,-0.6025784,-0.5497983,
+	  -1.6291503,-0.5598056,-0.1663027,-0.2904102,-0.1001409,-0.6409924,-0.0930786
+
+
+];
+	
+
+var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.6397837,-0.9900705,-0.6936151,-0.3143771,2.2684808,-0.2795834,1.2747801,0.1963336,1.3245123,-0.2934740,-0.2691092,
+	  -0.5950169,-0.5553267,-0.4073862,-0.7591583,0.2903314,0.0410763,-0.5016616,-1.0052675,-0.6332754,-0.2990915,-0.3709695,-0.2280510,-0.4118137,-0.3466415,
+	  -0.2602657,-0.3542456,1.6032455,2.1148380,-0.6059825,-0.3750569,-1.5557278
+]
+
+
+
+
+
+</script>
+
+
+</head>
+<body>
+
+<table border="0">
+
+	<tr>
+		<th> </th>
+		<th> Unknown</th>
+		<th> 0</th>
+		<th> 1</th>
+		<th> 2</th>
+		<th> 3</th>
+	</tr>
+	<tr>
+		
+		<td class="label">Erythema</td>
+		<td><input type="radio" name="erythema" value="-1"></td>
+		<td><input type="radio" name="erythema" value="0"></td>
+		<td><input type="radio" name="erythema" value="1"></td>
+		<td><input type="radio" name="erythema" value="2"></td>
+		<td><input type="radio" name="erythema" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Scaling</td>
+		<td><input type="radio" name="scaling" value="-1"></td>
+		<td><input type="radio" name="scaling" value="0"></td>
+		<td><input type="radio" name="scaling" value="1"></td>
+		<td><input type="radio" name="scaling" value="2"></td>
+		<td><input type="radio" name="scaling" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Definite Borders</td>
+		<td><input type="radio" name="definiteborders" value="-1"></td>
+		<td><input type="radio" name="definiteborders" value="0"></td>
+		<td><input type="radio" name="definiteborders" value="1"></td>
+		<td><input type="radio" name="definiteborders" value="2"></td>
+		<td><input type="radio" name="definiteborders" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Itching</td>
+		<td><input type="radio" name="itching" value="-1"></td>
+		<td><input type="radio" name="itching" value="0"></td>
+		<td><input type="radio" name="itching" value="1"></td>
+		<td><input type="radio" name="itching" value="2"></td>
+		<td><input type="radio" name="itching" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Koebner Phenomenon</td>
+		<td><input type="radio" name="koebnerohenomenon" value="-1"></td>
+		<td><input type="radio" name="koebnerohenomenon" value="0"></td>
+		<td><input type="radio" name="koebnerohenomenon" value="1"></td>
+		<td><input type="radio" name="koebnerohenomenon" value="2"></td>
+		<td><input type="radio" name="koebnerohenomenon" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Polygonal Papules</td>
+		<td><input type="radio" name="polygonalpapules" value="-1"></td>
+		<td><input type="radio" name="polygonalpapules" value="0"></td>
+		<td><input type="radio" name="polygonalpapules" value="1"></td>
+		<td><input type="radio" name="polygonalpapules" value="2"></td>
+		<td><input type="radio" name="polygonalpapules" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Follicular Papules</td>
+		<td><input type="radio" name="follicularpapules" value="-1"></td>
+		<td><input type="radio" name="follicularpapules" value="0"></td>
+		<td><input type="radio" name="follicularpapules" value="1"></td>
+		<td><input type="radio" name="follicularpapules" value="2"></td>
+		<td><input type="radio" name="follicularpapules" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Oral Mucosal Involvement</td>
+		<td><input type="radio" name="oralmucosalinvolvement" value="-1"></td>
+		<td><input type="radio" name="oralmucosalinvolvement" value="0"></td>
+		<td><input type="radio" name="oralmucosalinvolvement" value="1"></td>
+		<td><input type="radio" name="oralmucosalinvolvement" value="2"></td>
+		<td><input type="radio" name="oralmucosalinvolvement" value="3"></td>
+		
+	</tr>
+	
+	
+	
+	<tr>
+		
+		<td class="label">Knee and elbow involvement</td>
+		<td><input type="radio" name="kneeandelbowinvolvement" value="-1"></td>
+		<td><input type="radio" name="kneeandelbowinvolvement" value="0"></td>
+		<td><input type="radio" name="kneeandelbowinvolvement" value="1"></td>
+		<td><input type="radio" name="kneeandelbowinvolvement" value="2"></td>
+		<td><input type="radio" name="kneeandelbowinvolvement" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Scalp involvement</td>
+		<td><input type="radio" name="scalpinvolvement" value="-1"></td>
+		<td><input type="radio" name="scalpinvolvement" value="0"></td>
+		<td><input type="radio" name="scalpinvolvement" value="1"></td>
+		<td><input type="radio" name="scalpinvolvement" value="2"></td>
+		<td><input type="radio" name="scalpinvolvement" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Family History</td>
+		<td><input type="radio" name="familyhistory" value="-1"></td>
+		<td><input type="radio" name="familyhistory" value="0"></td>
+		<td><input type="radio" name="familyhistory" value="1"></td>
+		<td><input type="radio" name="familyhistory" value="2"></td>
+		<td><input type="radio" name="familyhistory" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">melanin incontinence</td>
+		<td><input type="radio" name="melaninincontinence" value="-1"></td>
+		<td><input type="radio" name="melaninincontinence" value="0"></td>
+		<td><input type="radio" name="melaninincontinence" value="1"></td>
+		<td><input type="radio" name="melaninincontinence" value="2"></td>
+		<td><input type="radio" name="melaninincontinence" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">eosinophils in the infiltrate</td>
+		<td><input type="radio" name="eosinophilsintheinfiltrate" value="-1"></td>
+		<td><input type="radio" name="eosinophilsintheinfiltrate" value="0"></td>
+		<td><input type="radio" name="eosinophilsintheinfiltrate" value="1"></td>
+		<td><input type="radio" name="eosinophilsintheinfiltrate" value="2"></td>
+		<td><input type="radio" name="eosinophilsintheinfiltrate" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">PNL infiltrate</td>
+		<td><input type="radio" name="PNLinfiltrate" value="-1"></td>
+		<td><input type="radio" name="PNLinfiltrate" value="0"></td>
+		<td><input type="radio" name="PNLinfiltrate" value="1"></td>
+		<td><input type="radio" name="PNLinfiltrate" value="2"></td>
+		<td><input type="radio" name="PNLinfiltrate" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Fibrosis of the papillary dermis</td>
+		<td><input type="radio" name="fibrosisofthepapillarydermis" value="-1"></td>
+		<td><input type="radio" name="fibrosisofthepapillarydermis" value="0"></td>
+		<td><input type="radio" name="fibrosisofthepapillarydermis" value="1"></td>
+		<td><input type="radio" name="fibrosisofthepapillarydermis" value="2"></td>
+		<td><input type="radio" name="fibrosisofthepapillarydermis" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">exocytosis</td>
+		<td><input type="radio" name="exocytosis" value="-1"></td>
+		<td><input type="radio" name="exocytosis" value="0"></td>
+		<td><input type="radio" name="exocytosis" value="1"></td>
+		<td><input type="radio" name="exocytosis" value="2"></td>
+		<td><input type="radio" name="exocytosis" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">acanthosis</td>
+		<td><input type="radio" name="acanthosis" value="-1"></td>
+		<td><input type="radio" name="acanthosis" value="0"></td>
+		<td><input type="radio" name="acanthosis" value="1"></td>
+		<td><input type="radio" name="acanthosis" value="2"></td>
+		<td><input type="radio" name="acanthosis" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">hyperkeratosis</td>
+		<td><input type="radio" name="hyperkeratosis" value="-1"></td>
+		<td><input type="radio" name="hyperkeratosis" value="0"></td>
+		<td><input type="radio" name="hyperkeratosis" value="1"></td>
+		<td><input type="radio" name="hyperkeratosis" value="2"></td>
+		<td><input type="radio" name="hyperkeratosis" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">parakeratosis</td>
+		<td><input type="radio" name="parakeratosis" value="-1"></td>
+		<td><input type="radio" name="parakeratosis" value="0"></td>
+		<td><input type="radio" name="parakeratosis" value="1"></td>
+		<td><input type="radio" name="parakeratosis" value="2"></td>
+		<td><input type="radio" name="parakeratosis" value="3"></td>
+		
+	</tr>
+	<tr>
+		
+		<td class="label">clubbing of the rete ridges</td>
+		<td><input type="radio" name="clubbingofthereteridges" value="-1"></td>
+		<td><input type="radio" name="clubbingofthereteridges" value="0"></td>
+		<td><input type="radio" name="clubbingofthereteridges" value="1"></td>
+		<td><input type="radio" name="clubbingofthereteridges" value="2"></td>
+		<td><input type="radio" name="clubbingofthereteridges" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">elongation of the rete ridges</td>
+		<td><input type="radio" name="elongationofthereteridges" value="-1"></td>
+		<td><input type="radio" name="elongationofthereteridges" value="0"></td>
+		<td><input type="radio" name="elongationofthereteridges" value="1"></td>
+		<td><input type="radio" name="elongationofthereteridges" value="2"></td>
+		<td><input type="radio" name="elongationofthereteridges" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">thinning of the suprapapillary epidermis</td>
+		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="-1"></td>
+		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="0"></td>
+		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="1"></td>
+		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="2"></td>
+		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">spongiform pustule</td>
+		<td><input type="radio" name="spongiformpustule" value="-1"></td>
+		<td><input type="radio" name="spongiformpustule" value="0"></td>
+		<td><input type="radio" name="spongiformpustule" value="1"></td>
+		<td><input type="radio" name="spongiformpustule" value="2"></td>
+		<td><input type="radio" name="spongiformpustule" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">munro microabcess</td>
+		<td><input type="radio" name="munromicroabcess" value="-1"></td>
+		<td><input type="radio" name="munromicroabcess" value="0"></td>
+		<td><input type="radio" name="munromicroabcess" value="1"></td>
+		<td><input type="radio" name="munromicroabcess" value="2"></td>
+		<td><input type="radio" name="munromicroabcess" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">focal hypergranulosis</td>
+		<td><input type="radio" name="focalhypergranulosis" value="-1"></td>
+		<td><input type="radio" name="focalhypergranulosis" value="0"></td>
+		<td><input type="radio" name="focalhypergranulosis" value="1"></td>
+		<td><input type="radio" name="focalhypergranulosis" value="2"></td>
+		<td><input type="radio" name="focalhypergranulosis" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">disappearance of the granular layer</td>
+		<td><input type="radio" name="disappearanceofthegranularlayer" value="-1"></td>
+		<td><input type="radio" name="disappearanceofthegranularlayer" value="0"></td>
+		<td><input type="radio" name="disappearanceofthegranularlayer" value="1"></td>
+		<td><input type="radio" name="disappearanceofthegranularlayer" value="2"></td>
+		<td><input type="radio" name="disappearanceofthegranularlayer" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">vacuolisation and damage of basal layer</td>
+		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="-1"></td>
+		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="0"></td>
+		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="1"></td>
+		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="2"></td>
+		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">spongiosis</td>
+		<td><input type="radio" name="spongiosis" value="-1"></td>
+		<td><input type="radio" name="spongiosis" value="0"></td>
+		<td><input type="radio" name="spongiosis" value="1"></td>
+		<td><input type="radio" name="spongiosis" value="2"></td>
+		<td><input type="radio" name="spongiosis" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">saw-tooth appearance of retes</td>
+		<td><input type="radio" name="saw-toothappearanceofretes" value="-1"></td>
+		<td><input type="radio" name="saw-toothappearanceofretes" value="0"></td>
+		<td><input type="radio" name="saw-toothappearanceofretes" value="1"></td>
+		<td><input type="radio" name="saw-toothappearanceofretes" value="2"></td>
+		<td><input type="radio" name="saw-toothappearanceofretes" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">follicular horn plug</td>
+		<td><input type="radio" name="follicularhornplug" value="-1"></td>
+		<td><input type="radio" name="follicularhornplug" value="0"></td>
+		<td><input type="radio" name="follicularhornplug" value="1"></td>
+		<td><input type="radio" name="follicularhornplug" value="2"></td>
+		<td><input type="radio" name="follicularhornplug" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">perifollicular parakeratosis</td>
+		<td><input type="radio" name="perifollicularparakeratosis" value="-1"></td>
+		<td><input type="radio" name="perifollicularparakeratosis" value="0"></td>
+		<td><input type="radio" name="perifollicularparakeratosis" value="1"></td>
+		<td><input type="radio" name="perifollicularparakeratosis" value="2"></td>
+		<td><input type="radio" name="perifollicularparakeratosis" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">inflammatory monoluclear inflitrate</td>
+		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="-1"></td>
+		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="0"></td>
+		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="1"></td>
+		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="2"></td>
+		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">band-like infiltrate</td>
+		<td><input type="radio" name="band-likeinfiltrate" value="-1"></td>
+		<td><input type="radio" name="band-likeinfiltrate" value="0"></td>
+		<td><input type="radio" name="band-likeinfiltrate" value="1"></td>
+		<td><input type="radio" name="band-likeinfiltrate" value="2"></td>
+		<td><input type="radio" name="band-likeinfiltrate" value="3"></td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td class="label">Age</td>
+		<td><input type="text" name="Age" id="Age" size="20"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		
+	</tr>
+	
+
+</table>
+
+<button onclick="predictClass()">Click me</button>
+
+
+</body>
+</html>
