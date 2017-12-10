@@ -44,7 +44,7 @@ var featureSetElementArray = ['erythema','scaling','definiteborders','itching','
 	'spongiformpustule','munromicroabcess','focalhypergranulosis','disappearanceofthegranularlayer','vacuolisationanddamageofbasallayer',
 	'spongiosis','saw-toothappearanceofretes','follicularhornplug','perifollicularparakeratosis','inflammatorymonoluclearinflitrate','band-likeinfiltrate','Age'
 	] 
-var classlabelArray=['psoriasis','seboreic dermatitis','lichen planus','pityriasis rosea','cronic dermatitis','pityriasis rubra pilaris']
+var classlabelArray=['Psoriasis','Seboreic Dermatitis','Lichen Planus','Pityriasis Rosea','Cronic Dermatitis','Pityriasis Rubra Pilaris'];
 var collectInput = function (){
 
 	for (i = 0; i < featureSetElementArray.length-1; i++) { 
@@ -118,7 +118,9 @@ var predictClass = function () {
 		
 		var index = indexOfMax(hypothesisFuncValue)//hypothesisFuncValue.indexOf(Math.max(hypothesisFuncValue));
 		
-		alert('The predicted class label is ' +  classlabelArray[index])
+		document.getElementById("predictedValue").innerHTML = "";
+		document.getElementById("predictedValue").innerHTML = "Predicted Value : " + classlabelArray[index];
+		//alert('The predicted class label is ' +  classlabelArray[index]);
 
 }
 
@@ -167,7 +169,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 
 	<tr>
 		<th> </th>
-		<th> Unknown</th>
+		<th> </th>
 		<th> 0</th>
 		<th> 1</th>
 		<th> 2</th>
@@ -176,7 +178,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Erythema</td>
-		<td><input type="radio" name="erythema" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="erythema" value="0"></td>
 		<td><input type="radio" name="erythema" value="1"></td>
 		<td><input type="radio" name="erythema" value="2"></td>
@@ -187,7 +189,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Scaling</td>
-		<td><input type="radio" name="scaling" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="scaling" value="0"></td>
 		<td><input type="radio" name="scaling" value="1"></td>
 		<td><input type="radio" name="scaling" value="2"></td>
@@ -198,7 +200,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Definite Borders</td>
-		<td><input type="radio" name="definiteborders" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="definiteborders" value="0"></td>
 		<td><input type="radio" name="definiteborders" value="1"></td>
 		<td><input type="radio" name="definiteborders" value="2"></td>
@@ -209,7 +211,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Itching</td>
-		<td><input type="radio" name="itching" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="itching" value="0"></td>
 		<td><input type="radio" name="itching" value="1"></td>
 		<td><input type="radio" name="itching" value="2"></td>
@@ -220,7 +222,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Koebner Phenomenon</td>
-		<td><input type="radio" name="koebnerohenomenon" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="koebnerohenomenon" value="0"></td>
 		<td><input type="radio" name="koebnerohenomenon" value="1"></td>
 		<td><input type="radio" name="koebnerohenomenon" value="2"></td>
@@ -231,7 +233,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Polygonal Papules</td>
-		<td><input type="radio" name="polygonalpapules" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="polygonalpapules" value="0"></td>
 		<td><input type="radio" name="polygonalpapules" value="1"></td>
 		<td><input type="radio" name="polygonalpapules" value="2"></td>
@@ -242,7 +244,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Follicular Papules</td>
-		<td><input type="radio" name="follicularpapules" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="follicularpapules" value="0"></td>
 		<td><input type="radio" name="follicularpapules" value="1"></td>
 		<td><input type="radio" name="follicularpapules" value="2"></td>
@@ -253,7 +255,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Oral Mucosal Involvement</td>
-		<td><input type="radio" name="oralmucosalinvolvement" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="oralmucosalinvolvement" value="0"></td>
 		<td><input type="radio" name="oralmucosalinvolvement" value="1"></td>
 		<td><input type="radio" name="oralmucosalinvolvement" value="2"></td>
@@ -266,7 +268,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Knee and elbow involvement</td>
-		<td><input type="radio" name="kneeandelbowinvolvement" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="kneeandelbowinvolvement" value="0"></td>
 		<td><input type="radio" name="kneeandelbowinvolvement" value="1"></td>
 		<td><input type="radio" name="kneeandelbowinvolvement" value="2"></td>
@@ -277,7 +279,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Scalp involvement</td>
-		<td><input type="radio" name="scalpinvolvement" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="scalpinvolvement" value="0"></td>
 		<td><input type="radio" name="scalpinvolvement" value="1"></td>
 		<td><input type="radio" name="scalpinvolvement" value="2"></td>
@@ -288,7 +290,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Family History</td>
-		<td><input type="radio" name="familyhistory" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="familyhistory" value="0"></td>
 		<td><input type="radio" name="familyhistory" value="1"></td>
 		<td><input type="radio" name="familyhistory" value="2"></td>
@@ -299,7 +301,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">melanin incontinence</td>
-		<td><input type="radio" name="melaninincontinence" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="melaninincontinence" value="0"></td>
 		<td><input type="radio" name="melaninincontinence" value="1"></td>
 		<td><input type="radio" name="melaninincontinence" value="2"></td>
@@ -310,7 +312,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">eosinophils in the infiltrate</td>
-		<td><input type="radio" name="eosinophilsintheinfiltrate" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="eosinophilsintheinfiltrate" value="0"></td>
 		<td><input type="radio" name="eosinophilsintheinfiltrate" value="1"></td>
 		<td><input type="radio" name="eosinophilsintheinfiltrate" value="2"></td>
@@ -321,7 +323,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">PNL infiltrate</td>
-		<td><input type="radio" name="PNLinfiltrate" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="PNLinfiltrate" value="0"></td>
 		<td><input type="radio" name="PNLinfiltrate" value="1"></td>
 		<td><input type="radio" name="PNLinfiltrate" value="2"></td>
@@ -332,7 +334,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">Fibrosis of the papillary dermis</td>
-		<td><input type="radio" name="fibrosisofthepapillarydermis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="fibrosisofthepapillarydermis" value="0"></td>
 		<td><input type="radio" name="fibrosisofthepapillarydermis" value="1"></td>
 		<td><input type="radio" name="fibrosisofthepapillarydermis" value="2"></td>
@@ -343,7 +345,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">exocytosis</td>
-		<td><input type="radio" name="exocytosis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="exocytosis" value="0"></td>
 		<td><input type="radio" name="exocytosis" value="1"></td>
 		<td><input type="radio" name="exocytosis" value="2"></td>
@@ -354,7 +356,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">acanthosis</td>
-		<td><input type="radio" name="acanthosis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="acanthosis" value="0"></td>
 		<td><input type="radio" name="acanthosis" value="1"></td>
 		<td><input type="radio" name="acanthosis" value="2"></td>
@@ -365,7 +367,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">hyperkeratosis</td>
-		<td><input type="radio" name="hyperkeratosis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="hyperkeratosis" value="0"></td>
 		<td><input type="radio" name="hyperkeratosis" value="1"></td>
 		<td><input type="radio" name="hyperkeratosis" value="2"></td>
@@ -376,7 +378,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">parakeratosis</td>
-		<td><input type="radio" name="parakeratosis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="parakeratosis" value="0"></td>
 		<td><input type="radio" name="parakeratosis" value="1"></td>
 		<td><input type="radio" name="parakeratosis" value="2"></td>
@@ -386,7 +388,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">clubbing of the rete ridges</td>
-		<td><input type="radio" name="clubbingofthereteridges" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="clubbingofthereteridges" value="0"></td>
 		<td><input type="radio" name="clubbingofthereteridges" value="1"></td>
 		<td><input type="radio" name="clubbingofthereteridges" value="2"></td>
@@ -397,7 +399,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">elongation of the rete ridges</td>
-		<td><input type="radio" name="elongationofthereteridges" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="elongationofthereteridges" value="0"></td>
 		<td><input type="radio" name="elongationofthereteridges" value="1"></td>
 		<td><input type="radio" name="elongationofthereteridges" value="2"></td>
@@ -408,7 +410,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">thinning of the suprapapillary epidermis</td>
-		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="0"></td>
 		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="1"></td>
 		<td><input type="radio" name="thinningofthesuprapapillaryepidermis" value="2"></td>
@@ -419,7 +421,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">spongiform pustule</td>
-		<td><input type="radio" name="spongiformpustule" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="spongiformpustule" value="0"></td>
 		<td><input type="radio" name="spongiformpustule" value="1"></td>
 		<td><input type="radio" name="spongiformpustule" value="2"></td>
@@ -430,7 +432,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">munro microabcess</td>
-		<td><input type="radio" name="munromicroabcess" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="munromicroabcess" value="0"></td>
 		<td><input type="radio" name="munromicroabcess" value="1"></td>
 		<td><input type="radio" name="munromicroabcess" value="2"></td>
@@ -441,7 +443,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">focal hypergranulosis</td>
-		<td><input type="radio" name="focalhypergranulosis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="focalhypergranulosis" value="0"></td>
 		<td><input type="radio" name="focalhypergranulosis" value="1"></td>
 		<td><input type="radio" name="focalhypergranulosis" value="2"></td>
@@ -452,7 +454,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">disappearance of the granular layer</td>
-		<td><input type="radio" name="disappearanceofthegranularlayer" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="disappearanceofthegranularlayer" value="0"></td>
 		<td><input type="radio" name="disappearanceofthegranularlayer" value="1"></td>
 		<td><input type="radio" name="disappearanceofthegranularlayer" value="2"></td>
@@ -463,7 +465,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">vacuolisation and damage of basal layer</td>
-		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="0"></td>
 		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="1"></td>
 		<td><input type="radio" name="vacuolisationanddamageofbasallayer" value="2"></td>
@@ -474,7 +476,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">spongiosis</td>
-		<td><input type="radio" name="spongiosis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="spongiosis" value="0"></td>
 		<td><input type="radio" name="spongiosis" value="1"></td>
 		<td><input type="radio" name="spongiosis" value="2"></td>
@@ -485,7 +487,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">saw-tooth appearance of retes</td>
-		<td><input type="radio" name="saw-toothappearanceofretes" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="saw-toothappearanceofretes" value="0"></td>
 		<td><input type="radio" name="saw-toothappearanceofretes" value="1"></td>
 		<td><input type="radio" name="saw-toothappearanceofretes" value="2"></td>
@@ -496,7 +498,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">follicular horn plug</td>
-		<td><input type="radio" name="follicularhornplug" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="follicularhornplug" value="0"></td>
 		<td><input type="radio" name="follicularhornplug" value="1"></td>
 		<td><input type="radio" name="follicularhornplug" value="2"></td>
@@ -507,7 +509,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">perifollicular parakeratosis</td>
-		<td><input type="radio" name="perifollicularparakeratosis" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="perifollicularparakeratosis" value="0"></td>
 		<td><input type="radio" name="perifollicularparakeratosis" value="1"></td>
 		<td><input type="radio" name="perifollicularparakeratosis" value="2"></td>
@@ -518,7 +520,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">inflammatory monoluclear inflitrate</td>
-		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="-1"></td>
+		<td></td>
 		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="0"></td>
 		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="1"></td>
 		<td><input type="radio" name="inflammatorymonoluclearinflitrate" value="2"></td>
@@ -529,7 +531,7 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	<tr>
 		
 		<td class="label">band-like infiltrate</td>
-		<td><input type="radio" name="band-likeinfiltrate" value="-1"></td>
+		<td><input name="band-likeinfiltrate" value="-1" type="hidden"></td>
 		<td><input type="radio" name="band-likeinfiltrate" value="0"></td>
 		<td><input type="radio" name="band-likeinfiltrate" value="1"></td>
 		<td><input type="radio" name="band-likeinfiltrate" value="2"></td>
@@ -550,6 +552,10 @@ var thetaValuepPityriasisrubrapilaris=[-0.6827684,-0.3491012,-0.4423917,-0.63978
 	
 
 </table>
+
+<p>
+	<h4 id="predictedValue">Predicted Value : </h4>
+</p>
 
 <button onclick="predictClass()">Click me</button>
 

@@ -27,12 +27,12 @@
  
  
   # Rescaling
-  normalized_train_data = (normalized_data .- min_data) ./ range_data;
-  normalized_test_data = (data(281:358, 1: 34) .-  min_data) ./ range_data;
+  # normalized_train_data = (normalized_data .- min_data) ./ range_data;
+  # normalized_test_data = (data(281:358, 1: 34) .-  min_data) ./ range_data;
  
   # Mean Normalization
-  # normalized_train_data = (normalized_data .- mean_data) ./ range_data;
-  # normalized_test_data = (data(281:358, 1: 34) .-  mean_data) ./ range_data;
+  normalized_train_data = (normalized_data .- mean_data) ./ range_data;
+  normalized_test_data = (data(281:358, 1: 34) .-  mean_data) ./ range_data;
 
   # Standardization
   # normalized_train_data = (normalized_data .- mean_data) ./ sd_data;
@@ -62,12 +62,18 @@
   lmb = min_Lambda;
   index = 1;
   
+  selected_all_theta = zeros (35, 6);
+  
   while lmb <= max_Lambda
     
     accuracy = 0;
     num_correct_predictions = 0;
       
     [all_theta] = oneVsAll(train_inputs, train_output, num_class, lmb);
+    
+    if(lmb == 0.1)
+      selected_all_theta = all_theta;
+    end
         
     pred_train = predictOneVsAll(all_theta, train_inputs);
     pred_test = predictOneVsAll(all_theta, test_inputs);
@@ -86,7 +92,45 @@
     index = index + 1;
     
   end  
-    
+  
+  fprintf("Class 1 model");
+  arr1 = selected_all_theta(1, :);
+  [sort_arr1, index_arr1] = sort(arr1);
+  sort_arr1
+  index_arr1
+  
+  fprintf("Class 2 model");
+  arr2 = selected_all_theta(2, :);
+  [sort_arr2, index_arr2] = sort(arr2);
+  sort_arr2
+  index_arr2
+  
+  fprintf("Class 3 model");
+  arr3 = selected_all_theta(3, :);
+  [sort_arr3, index_arr3] = sort(arr3);
+  sort_arr3
+  index_arr3
+  
+  fprintf("Class 4 model");
+  arr4 = selected_all_theta(4, :);
+  [sort_arr4, index_arr4] = sort(arr4);
+  sort_arr4
+  index_arr4
+  
+  fprintf("Class 5 model");
+  arr5 = selected_all_theta(5, :);
+  [sort_arr5, index_arr5] = sort(arr5);
+  sort_arr5
+  index_arr5
+  
+  fprintf("Class 6 model");
+  arr6 = selected_all_theta(6, :);
+  [sort_arr6, index_arr6] = sort(arr6);
+  sort_arr6
+  index_arr6
+  
+  pause;
+   
   fprintf("\n");
   
   [max_train_accuracy, train_lmb_index] = max(training_accuracy_list);    
